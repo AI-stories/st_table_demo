@@ -1,0 +1,12 @@
+file,venue_name,city,state,country,guest_capacity,reception,ceremony,overnight_accommodations,catering_services,style,price,website,phone,email,address
+test_pdf/Alcazar Palm Springs.pdf,Alcazar Palm Springs,Palm Springs,,,100-125,,,True,True,,"$8,000 venue fee + $18,000 food and beverage minimum",,,Brittany@F10creative.com,
+test_pdf/Aliso Viejo Country Club.pdf,Aliso Viejo Country Club,Aliso Viejo,California,USA,,True,True,,True,Idyllic,,alisogolf.com,949.284.5460,,
+test_pdf/94th Aero Squadron Restaurant_.pdf,94th Aero Squadron Restaurant,San Diego,CA,USA,50 to 125,,,False,True,historic,$70++ to $83++ per person,,(858) 560-6771,info@94thsandiego.com,"8885 Balboa Avenue, San Diego, CA 92123"
+test_pdf/Aliso Viejo Wedgewood.pdf,Aliso Viejo by Wedgewood Weddings,Aliso Viejo,CA,USA,280,True,True,,True,Modern Elegance,Per Person 88-157 depending on package,WedgewoodWeddings.com,866.966.3009,Events@WedgewoodWeddings.com,"31 Santa Barbara Drive, Aliso Viejo, CA 92656"
+test_pdf/Ace Hotel Palm Springs.pdf,Ace Hotel & Swim Club,,,,150,True,True,True,True,,,,760.325.9900,events.psp@acehotel.com,
+test_pdf/Almansor Court.pdf,Almansor Court,Alhambra,CA,USA,500,True,True,False,True,"Traditional ballroom, Scenic view, Upscale banquet",Varies (subject to fees and sales tax),almansorcourt.com,(626) 570-4600,,"700 South Almansor St, Alhambra, CA 91801"
+test_pdf/a.o.c. Brentwood.pdf,A.O.C. Brentwood,Los Angeles,California,USA,"150 standing, 120 seated",True,,False,True,Modern and elegant,"$20,000-$26,000 Sun-Sat for up to 80 guests; $150 per person thereafter",,310.806.6464,,"11648 San Vicente Blvd. Los Angeles, CA 90049"
+test_pdf/Aquarium of the Pacific.pdf,Aquarium of the Pacific,Long Beach,California,USA,700,True,True,,True,Modern,,https://www.aquariumofpacific.org/specialevents,(562) 951-1663,AOPCatering@LongBeachCC.com,
+test_pdf/Arroyo Trabuco Golf Club.pdf,Arroyo Trabuco Golf Club,Mission Viejo,California,United States,300,True,True,,True,,$4500 - $5500 + $130 - $195 per person,www.ArroyoTrabuco.com,(949) 305.5111,,
+test_pdf/Avila Lighthouse Suites.pdf,Avila Lighthouse Suites,Avila Beach,California,USA,100,True,True,,,,"$2,500++ to $10,000++",,,,
+test_pdf/Avenue of the Arts.pdf,,Costa Mesa,California,USA,218,True,True,True,True,arts-inspired,Starting at $110 per person,,,,"3350 Avenue of the Arts, Costa Mesa, CA 92626"
