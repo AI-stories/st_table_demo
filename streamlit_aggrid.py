@@ -7,6 +7,9 @@ import tiktoken
 from dotenv import load_dotenv
 from st_aggrid import AgGrid, GridOptionsBuilder
 
+# This must be the first st command
+st.set_page_config(layout="wide")
+
 
 @st.cache_data
 def load_dotenv_():
@@ -14,9 +17,6 @@ def load_dotenv_():
 
 
 load_dotenv_()
-
-# Make the layout wider
-st.set_page_config(layout="wide")
 
 
 class PDFReader:
