@@ -67,3 +67,6 @@ dependencies = [
     "tzdata==2025.1",
     "urllib3==2.3.0",
 ]
+
+[tool.uv.workspace]
+members = ["docling"]

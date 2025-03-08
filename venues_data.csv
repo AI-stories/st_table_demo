@@ -1,0 +1,9 @@
+city         ,state      ,country       ,guest_capacity ,reception ,ceremony ,overnight_accommodations ,catering_services ,style                            ,name
+Los Angeles  ,CA         ,USA           ,150            ,True      ,False    ,False                    ,True              ,Modern and Elegant               ,a.o.c. Brentwood
+Aliso Viejo  ,California ,United States ,-1             ,True      ,True     ,False                    ,True              ,Private Golf and Country Club    ,Aliso Viejo Country Club
+Unknown      ,Unknown    ,Unknown       ,-1             ,True      ,True     ,False                    ,True              ,Nature Center                    ,Agua Hedionda Nature Center
+Aliso Viejo  ,CA         ,USA           ,280            ,True      ,True     ,False                    ,True              ,Elegance with a view             ,Aliso Viejo Wedgewood
+Palm Springs ,California ,USA           ,125            ,True      ,True     ,True                     ,True              ,Intimate Hotel                   ,Alcazar Palm Springs
+Alhambra     ,CA         ,USA           ,500            ,True      ,True     ,False                    ,True              ,Ballroom                         ,Almansor Court
+Palm Springs ,California ,USA           ,150            ,True      ,True     ,True                     ,True              ,"Bohemian, Traditional, Upscale" ,Ace Hotel Palm Springs
+San Diego    ,CA         ,USA           ,-1             ,True      ,False    ,False                    ,True              ,Traditional                      ,94th Aero Squadron Restaurant_
