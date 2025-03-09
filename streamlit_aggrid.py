@@ -168,7 +168,6 @@ class ProcessorError(Exception):
 
 
 def main():
-    # Initialize chat history and processor in session state
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if "processor" not in st.session_state:
@@ -179,7 +178,7 @@ def main():
     st.title("Wedding Venue Explorer")
 
     # Load your data
-    df = pd.read_csv("venue_info_test.csv")
+    df = pd.read_csv("final_demo_venues_data.csv")
     # Reorder columns to put venue_name first
     cols = df.columns.tolist()
     if "venue_name" in cols:
