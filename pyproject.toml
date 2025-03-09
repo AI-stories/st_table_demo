@@ -1,5 +1,5 @@
 [project]
-name = "playground-tables"
+name = "wedding-venues"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -17,6 +17,8 @@ dependencies = [
     "distro==1.9.0",
     "gitdb==4.0.12",
     "gitpython==3.1.44",
+    "google-cloud>=0.34.0",
+    "google-cloud-storage>=3.1.0",
     "h11==0.14.0",
     "httpcore==1.0.7",
     "httpx==0.28.1",
@@ -69,4 +71,19 @@ dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["docling"]
+members = ["docling", "mistral"]
+
+[tool.uv.sources]
+wedding-venues = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "wedding-venues",
+]
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["wedding_venues"]
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"

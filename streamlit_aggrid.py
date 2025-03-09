@@ -1,4 +1,6 @@
-from typing import Iterator
+import os
+import tempfile
+from typing import Iterator, List, Union, overload
 
 import openai
 import pandas as pd
@@ -6,6 +8,8 @@ import streamlit as st
 import tiktoken
 from dotenv import load_dotenv
 from st_aggrid import AgGrid, GridOptionsBuilder
+
+from wedding_venues import download_files
 
 # This must be the first st command
 st.set_page_config(layout="wide")
@@ -19,17 +23,64 @@ def load_dotenv_():
 load_dotenv_()
 
 
-class PDFReader:
-    @st.cache_data
-    def read(_self, file_path: str) -> str:
-        try:
-            import PyPDF2
+class MarkdownReader:
+    @staticmethod
+    def _get_temp_dir() -> str:
+        """Get or create a temporary directory that persists for the session"""
+        if "temp_dir" not in st.session_state:
+            st.session_state.temp_dir = tempfile.mkdtemp()
+            print(f"Created temporary directory: {st.session_state.temp_dir}")
+        return st.session_state.temp_dir
 
-            with open(file_path, "rb") as file:
-                reader = PyPDF2.PdfReader(file)
-                return " ".join(page.extract_text() for page in reader.pages)
+    @staticmethod
+    @overload
+    def download(file_path: str) -> str:
+        """Download a single markdown file and return the target path"""
+        ...
+
+    @staticmethod
+    @overload
+    def download(file_paths: List[str]) -> List[str]:
+        """Download multiple markdown files and return the target paths"""
+        ...
+
+    @staticmethod
+    def download(file_paths: Union[str, List[str]]) -> Union[str, List[str]]:
+        """
+        Download markdown files to a temporary directory
+
+        Args:
+            file_paths: Single file path (str) or list of file paths (list[str])
+
+        Returns:
+            If input is str: Returns target path (str)
+            If input is list[str]: Returns list of target paths (list[str])
+        """
+        temp_dir = MarkdownReader._get_temp_dir()
+
+        if isinstance(file_paths, str):
+            source_file = file_paths
+            target_file = os.path.join(temp_dir, os.path.basename(source_file))
+            download_files([source_file], [target_file])
+            return target_file
+
+        else:
+            source_files = file_paths
+            target_files = [
+                os.path.join(temp_dir, os.path.basename(f)) for f in source_files
+            ]
+            download_files(source_files, target_files)
+            return target_files
+
+    @staticmethod
+    @st.cache_data
+    def read(file_path: str) -> str:
+        """Read content from a file path"""
+        try:
+            with open(file_path, "r", encoding="utf-8") as file:
+                return file.read()
         except Exception as e:
-            raise DocumentReaderError(f"Error reading PDF: {str(e)}")
+            raise DocumentReaderError(f"Error reading file {file_path}: {str(e)}")
 
 
 class OpenAIProcessor:
@@ -117,27 +168,30 @@ class ProcessorError(Exception):
 
 
 def main():
-    # Initialize chat history and PDF processor in session state
+    # Initialize chat history and processor in session state
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if "processor" not in st.session_state:
         st.session_state.processor = OpenAIProcessor()
-    if "pdf_reader" not in st.session_state:
-        st.session_state.pdf_reader = PDFReader()
+    if "markdown_reader" not in st.session_state:
+        st.session_state.markdown_reader = MarkdownReader()
 
     st.title("Wedding Venue Explorer")
 
     # Load your data
-    df = pd.read_csv("venue_info_test copy 2.csv")
+    df = pd.read_csv("venue_info_test.csv")
     # Reorder columns to put venue_name first
     cols = df.columns.tolist()
-    cols.remove("venue_name")
-    df = df[["venue_name"] + cols]
+    if "venue_name" in cols:
+        cols.remove("venue_name")
+        df = df[["venue_name"] + cols]
 
     # Configure grid options
     gb = GridOptionsBuilder.from_dataframe(df)
     gb.configure_selection(selection_mode="multiple", use_checkbox=True)
-    gb.configure_column("file", hide=True)
+    # Only hide file column if it exists
+    if "file" in df.columns:
+        gb.configure_column("file", hide=True)
     gb.configure_column("venue_name", headerName="Venue Name")
     # Enable advanced filtering
     gb.configure_default_column(
@@ -174,14 +228,33 @@ def main():
         # Create context about selected venues
         venue_context = "No wedding venue(s) selected"
         if (selected_df is not None) and (not selected_df.empty):
-            venue_texts = []
-            for _, row in selected_df.iterrows():
-                try:
-                    pdf_text = st.session_state.pdf_reader.read(row["file"])
-                    venue_texts.append(f"Venue: {row['venue_name']}\n{pdf_text}")
-                except DocumentReaderError as e:
-                    st.error(f"Error reading PDF for {row['venue_name']}: {str(e)}")
-                    continue
+            # Construct file paths from venue names
+            venue_names = selected_df["venue_name"].tolist()
+            source_files = [f"venue_md/{venue_name}.md" for venue_name in venue_names]
+
+            try:
+                # Bulk download all files
+                target_files = MarkdownReader.download(source_files)
+
+                # Create a mapping from venue names to downloaded files
+                file_mapping = dict(zip(venue_names, target_files))
+
+                # Read all downloaded files
+                venue_texts = []
+                for _, row in selected_df.iterrows():
+                    venue_name = row["venue_name"]
+                    try:
+                        venue_text = MarkdownReader.read(file_mapping[venue_name])
+                        venue_texts.append(f"Venue: {venue_name}\n{venue_text}")
+                    except DocumentReaderError as e:
+                        st.error(f"Error reading markdown for {venue_name}: {str(e)}")
+                        continue
+                    except KeyError:
+                        st.error(f"Could not find markdown file for {venue_name}")
+                        continue
+            except Exception as e:
+                st.error(f"Error bulk downloading files: {str(e)}")
+                venue_texts = []
 
             if venue_texts:
                 venue_context = "\n\n".join(venue_texts)
