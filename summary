@@ -1,0 +1,82 @@
+Like it'll be like really fancy alcohol, and then the one at the bottom is like sort of the basic alcohol, like not
+very fancy, not very nice. So that's usually how they break it down. So I think it's more of a description of what 
+are the like packages and options for alcohol and drink, not necessarily listing them out. I mean, it's nice to 
+know a little bit, but just like more of the highlights of the different packages, I think is usually what I'm 
+after. Okay. Yes, then the approach in the prompt need to be a bit different. Yeah, then I get a good understanding
+about what you want here. So what are the categories for this? So you can have premium. What else? Like, yeah, I 
+don't know. I don't know how it is in the United States, like what are the type of packages that you think usually 
+appear in the information by these wedding venues? I don't know if it's, you know, the terms they use so that I can
+give the AI a list of options that it can choose from. Yeah, like premium. They will also describe like the lowest 
+tier is typically for what we call well drinks. Yeah. Well, I wonder if there's like an option or I can find one. 
+Let me see. Oh, here's a perfect one. Like deluxe or standard. Ah, yeah. Standard, deluxe. Yeah, they are good 
+options. Yeah, so this is actually like a pretty good example. Let me, I'll share real quick. So if you can see 
+here actually it's sort of similar. Like this is the, there's deluxe here on the left and then there's standard. 
+Now this is a little bit complicated because they're going into like a lot of detail. Yeah. But this is how they 
+just sort of break it down in different examples. And then in some cases they will say you can either do a hosted 
+bar. Hosted bar means that myself as a person using the wedding venue pays for it. Client charged based on the 
+total number of drinks consumed. Hosted bar or a consumption bar. So a consumption or hosted bar means I use the 
+wedding venue and I pay for, if everybody has 500 drinks, I pay for 500 drinks. The other option is sometimes 
+people will pay ahead of time. So the benefit is if my audience or my guests don't drink a lot, then I only pay for
+what they drink. Now some people will decide to prepay for a package and then they'll say, okay, well I don't 
+really know how much everyone will drink. Maybe if they drink a lot, then I'm going to prepay the amount and then 
+hopefully they drink a lot more and then it doesn't really cost me as much, if that makes sense. Yeah. Okay. No, 
+that's fine. Yes, and I go use those options and ask the AI to return one of the options for the venue, right? 
+Could it be that they provide, I mean, they could provide multiple options, right? Like in the example you show 
+right now, they can have the premium but also standard package. Yeah, so maybe like it is a little bit difficult. 
+Like I could say to describe it, it is a little bit difficult because yeah, sometimes there's hosted, then there's 
+the cashless, different packages. It's sort of complicated. So maybe that's why I said give me like a summary of 
+the options. So and I think maybe the difference is like some of these questions are a summary that's going to be 
+present no matter what. And some of these questions are more like sorting. Right. You know, so like I think because
+the bar is sort of a complicated thing, I think it's more of a summary question rather than a sorting question. 
+Okay. So I think the result should, that's why I was after a result that was more of a summary. Tell me what the 
+highlights of the options are rather than trying to put someone in a different like bucket. Right. Okay. Yes. So 
+this one doesn't have to be sortable, right? You can just return kind of a summary or text format that people can 
+read to get further details. Correct. Okay. So this is clear. So that was a bad breakdown. 
+
+I think there was 
+something else about the food breakdown or not. Do we have such a thing? I don't know. I'm ready. Yeah. Yeah, there
+was something about the food breakdown, but then it said appetizer, what to say provided for appetizer, what is 
+there for the main courses, you know, stuff like that. Or do you need that information at all? I don't know how 
+important it is for the user. Is it the menu breakdown? Yeah, there was a menu breakdown. Oh, okay. I think this is
+the same thing. Okay. I think it's the same thing as that bar. Okay. Another summary column. Yeah. Yeah, I will try
+to return the AI output in a bit more like structured way so that it's a bit readable. But it doesn't have to be 
+sorted, these two columns. Okay, I think that was that. Okay, then I will need to make some changes on a few, on 
+most of the fields. 
+
+Yeah, another question I have is about which model we will be using. Yeah, I was so surprised 
+with how much they charged the GPT 4.5. That was insane, right? Yeah, I know. That was not good. There's no 
+material difference between the output, I think. It's so crazy. That was crazy. What do you think is the… So the 
+Gemini is like very cheap. Yeah, the Gemini is really cheap and I think it is good too. Yeah. Do you know if it is 
+cheaper than 4 mini? I think it is. Okay. You know what? I will still test this out so I can do for all 4 mini and 
+Gemini and see how they perform because I will need to change from for a couple of fields. But yeah, definitely not
+GPT 4.5. That is way, way too expensive. Yeah, yeah. I mean, I don't mind paying like a little bit extra in this 
+case because it's going to stay for… Hopefully it gets really good results and I don't have to redo it again. Yeah.
+Or I can wait a while to redo it. So… Yeah. I mean, I compared the output. I think they are… Except the price 
+breakdown, I think on other fields, they just seem to have kind of similar or same answer compared to 4 mini. So I 
+think the task itself is probably not… It's not like challenging enough to be like so that we have to use like a 
+model like GPT 4.5. But I think for some fields like price breakdown, maybe that's when we can use some sort of 
+reasoning model because I haven't tried with the O3 mini, but I think for some math problem, maybe model like O3 
+would perform better with the price calculation. Yeah, so maybe for that one, I will try the reasoning models. 
+Okay. Okay. Yeah, I think O3 mini is also quite cheap as well. But in any case, I will do Gemini as well. Okay, 
+yeah, yeah, yeah. Yeah, I mean, at the end of the day, if the difference is $100 or $200, you know, I'd rather have
+a very good output because this is the main part of the product. So… Yes. Okay. Yeah. Okay, no, let's try it out 
+and then we can compare the output. Okay, cool. I'm glad we had this conversation because I was a little bit… I was
+getting confused. I was like, oh, this has to work. Yeah, I think… Yeah, because it's also like easier to get an 
+idea of what you want in a call instead of reading the prompt. And yeah, I guess I was just trying to make an 
+assumption about what type of information you want to get for each field. Sorry. I don't know if there's something 
+else. Oh, am I still sharing my screen? Oh, I think I am. That was strange. No, nothing else. Thank you for the 
+work. Sounds like we're getting closer, so that's positive. Yeah, no, definitely. Yeah, I will try to deliver to 
+you something next week or so. And also in the app now, we have the chat interface so people can select a company 
+or a wedding venue and then they can have a further chat for that venue. That was what we discussed the previous 
+time, right, in the previous meeting? Yeah, I mean, I think you… For me, the most important thing is like the 
+spreadsheet output. Table output? Yeah, table output because I'll have to change it from how you have it set up 
+with the Streamlit anyway. So I wouldn't worry too much about how it's shown in the Streamlit. I care more about 
+how it's shown in the table output, I think. Because once I have the table output, then I can figure out how to 
+represent it in a different website. Yeah, no, yeah, of course. Then I will try to get a good output for the 
+spreadsheet or the table format. Yeah, and the chat interface is just quite simple. People just have a chat. Yeah, 
+the chat interface, I'll just have to do that, I guess, separately. Yeah, you can do that indeed. I mean, if you 
+want it in a proper web app or something, then yeah, I guess maybe a web app developer or something can do it quite
+easily. Yeah, I don't think it's too hard. Just associate the PDF with that table entry and then once you want to 
+chat with it, then it… So I don't think it's too difficult. Yeah, okay. Then… Yeah, I think we are getting closer. 
+All right, appreciate it. Thank you so much for your work and good to chat with you. Yeah, and have a good day too.
+Thanks. Thank you. Thank you. Bye. Good night. Bye. Yeah, so apparently what you want for each field is quite

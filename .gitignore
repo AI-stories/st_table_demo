@@ -4,3 +4,4 @@
 turing-guard-444623-s7-2cd0a98f8177.json
 __pycache__
 *.pyc
+*.egg-info

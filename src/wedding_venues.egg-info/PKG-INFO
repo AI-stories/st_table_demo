@@ -1,4 +1,4 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: wedding-venues
 Version: 0.1.0
 Summary: Add your description here
@@ -18,6 +18,7 @@ Requires-Dist: gitdb==4.0.12
 Requires-Dist: gitpython==3.1.44
 Requires-Dist: google-cloud>=0.34.0
 Requires-Dist: google-cloud-storage>=3.1.0
+Requires-Dist: google-generativeai>=0.8.4
 Requires-Dist: h11==0.14.0
 Requires-Dist: httpcore==1.0.7
 Requires-Dist: httpx==0.28.1

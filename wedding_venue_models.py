@@ -67,7 +67,7 @@ class WeddingFoodInfo(BaseModel):
         description="Provide a structured breakdown of the bar and alcohol options at the venue. Return a detailed breakdown using the BarBreakdown model."
     )
     outside_food_allowed: bool | None = Field(
-        description="Can external catering or food vendors be used at this venue?If the text explicitely mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."
+        description="Can external catering or food vendors be used at this venue?If the text explicitly mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."
     )
     outside_alcohol_allowed: bool | None = Field(
         description="Can external alcohol be brought into this venue?If the text mentions the venue has a liquor license or provides alcohol service, answer False. If the text explicitly mentions allowing outside alcohol or BYOB policy, answer True. If not mentioned, default to False."
@@ -121,6 +121,32 @@ class PriceBreakdown(BaseModel):
     assumptions: str | None = Field(
         description="Key assumptions made in the cost calculation, such as guest count, day of the week, or gratuity rate (e.g., '100 guests, Sunday pricing as middle option, 20% gratuity as midpoint')."
     )
+
+
+class WeddingPriceInfo(BaseModel):
+    option: Literal["deluxe", "premium", "standard", "economy", "other"]
+    """
+    This is the pricing option for this wedding venue.
+    """
+    price: int
+    """
+    This is the price for this wedding venue.
+    """
+    summary: str
+    """
+    This is a summary of the package option for this wedding venue.
+    """
+    price_breakdown: PriceBreakdown
+    """
+    This is the breakdown of the price for this wedding venue.
+    """
+
+
+class WeddingVenuePricingSummary(BaseModel):
+    options: list[WeddingPriceInfo]
+    """
+    This is a list of all the pricing options for this wedding venue.
+    """
 
 
 class WeddingPriceInfo(BaseModel):
