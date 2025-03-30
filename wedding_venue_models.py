@@ -67,7 +67,7 @@ class WeddingFoodInfo(BaseModel):
         description="Provide a structured breakdown of the bar and alcohol options at the venue. Return a detailed breakdown using the BarBreakdown model."
     )
     outside_food_allowed: bool | None = Field(
-        description="Can external catering or food vendors be used at this venue?If the text explicitly mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."
+        description="Can external catering or food vendors be used at this venue?If the text explicitely mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."
     )
     outside_alcohol_allowed: bool | None = Field(
         description="Can external alcohol be brought into this venue?If the text mentions the venue has a liquor license or provides alcohol service, answer False. If the text explicitly mentions allowing outside alcohol or BYOB policy, answer True. If not mentioned, default to False."
