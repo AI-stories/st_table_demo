@@ -441,7 +441,13 @@ Think through your calculation step by step:
 Remember: Your answer must be ONLY a single number representing the per-person cost in USD."""
     )
     base_prices: str = Field(
-        description="The base cost of the venue, including menu items, beverages and any variations based on day of the week or package. Break down ALL venue costs on a per-person basis. For example, if the venue has a $20,000 base price for 80 guests, the base price per person is $250."
+        description="""The base cost of the venue, including menu items,
+                    beverages and any variations based on day of the week or
+                    package. Break down ALL venue costs on a per-person basis.
+                    For example, if the venue has a $20,000 base price for 80
+                    guests, the base price per person is $250. If there is not
+                    enough information, take the base assumption of $100 per
+                    person for food and $50 per person for beverage."""
     )
     taxes_and_fees: str = Field(
         description="The breakdown of taxes, gratuity, and any additional fees, including their individual amounts and the total. Convert ALL taxes, service charges, and fees to per-person amounts. For example, if the venue has a $2,185 tax for 80 guests, the tax per person is $27.31."
