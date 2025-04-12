@@ -124,32 +124,6 @@ class PriceBreakdown(BaseModel):
 
 
 class WeddingPriceInfo(BaseModel):
-    option: Literal["deluxe", "premium", "standard", "economy", "other"]
-    """
-    This is the pricing option for this wedding venue.
-    """
-    price: int
-    """
-    This is the price for this wedding venue.
-    """
-    summary: str
-    """
-    This is a summary of the package option for this wedding venue.
-    """
-    price_breakdown: PriceBreakdown
-    """
-    This is the breakdown of the price for this wedding venue.
-    """
-
-
-class WeddingVenuePricingSummary(BaseModel):
-    options: list[WeddingPriceInfo]
-    """
-    This is a list of all the pricing options for this wedding venue.
-    """
-
-
-class WeddingPriceInfo(BaseModel):
     price: int | None = Field(
         description="Give me your best guess for the cost per person it would be to have a wedding reception at this venue. Respond with only a number. Treat the costs associated with the ceremony as separate. If there are unknowns, use your best judgment to guesstimate the cost given the geographic location and relative 'niceness' of the property. If there are multiple packages and options, choose the middle or medium option to provide the best reference point. When you give the number,make sure you account for local taxes, tip, and any service charges. Assume that couples will pay for standard things like dinner, an appetizer course, dessert, alcohol, photography but exclude non-standard things like a late-night meal."
     )
@@ -184,6 +158,12 @@ class WeddingPriceInfo(BaseModel):
     )
 
 
+class WeddingVenuePricingSummary(BaseModel):
+    options: list[WeddingPriceInfo] = Field(
+        description="This is a list of all the pricing options for this wedding venue."
+    )
+
+
 class WeddingVenueOther(BaseModel):
     outside_wedding_coordinator: bool | None = Field(
         description="This venue lets me bring in my own wedding coordinator"
@@ -200,7 +180,7 @@ class WeddingVenueOther(BaseModel):
         ]
         | None
     ) = Field(
-        description="""Determine the wedding package approach of the venue. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s description as the field value: \n  - This venue offers fixed packages, with a few extras or options\n  - This venue offers a moderate or flexible approach\n  - This venue provides a high degree of flexibility\n  - Not enough information. 
+        description="""Determine the wedding package approach of the venue. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's description as the field value: \n  - This venue offers fixed packages, with a few extras or options\n  - This venue offers a moderate or flexible approach\n  - This venue provides a high degree of flexibility\n  - Not enough information. 
         \n For guidance: Fixed packages include in-house services (e.g., pre-set menus); moderate offers a mix; high flexibility requires client planning."""
     )
     reception_or_ceremony: (
@@ -212,7 +192,7 @@ class WeddingVenueOther(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine an option for spaces provided by the venue. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s description as the field value: \n  - Only space for reception\n  - Only space for the ceremony\n  - Both reception and the ceremony space\n  - Not enough information."
+        description="Determine an option for spaces provided by the venue. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's description as the field value: \n  - Only space for reception\n  - Only space for the ceremony\n  - Both reception and the ceremony space\n  - Not enough information."
     )
     what_time_does_the_party_need_to_stop: (
         Literal[
@@ -223,13 +203,13 @@ class WeddingVenueOther(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine the latest time the event must conclude. You MUST CHOOSE ONE of the following options that best matches the document’s content: \n  - 10PM\n  - 12AM\n  - After 12AM\n  - Not enough information."
+        description="Determine the latest time the event must conclude. You MUST CHOOSE ONE of the following options that best matches the document's content: \n  - 10PM\n  - 12AM\n  - After 12AM\n  - Not enough information."
     )
     top_choices: str | None = Field(
         description="Give me 1-2 reasons why you think a client is most likely to choose this venue (e.g., what are the biggest key selling points or benefits)."
     )
     guest_capacity: Literal[1, 50, 100, 150, 200, 300] | None = Field(
-        description="Determine the estimated guest capacity. You MUST CHOOSE ONE of the following approximate maximums that best matches the document’s content, representing the upper bound of each range: \n  - 1 (for 1-50)\n  - 50 (for 50-100)\n  - 100 (for 100-150)\n  - 150 (for 150-200)\n  - 200 (for 200-300)\n  - 300 (for 300+). Guidance: Infer from max guests or room size (e.g., 'up to 150 guests' = 150)."
+        description="Determine the estimated guest capacity. You MUST CHOOSE ONE of the following approximate maximums that best matches the document's content, representing the upper bound of each range: \n  - 1 (for 1-50)\n  - 50 (for 50-100)\n  - 100 (for 100-150)\n  - 150 (for 150-200)\n  - 200 (for 200-300)\n  - 300 (for 300+). Guidance: Infer from max guests or room size (e.g., 'up to 150 guests' = 150)."
     )
 
 
@@ -260,7 +240,7 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine the style of the venue. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s value as the field value: \n  - Barns & Farms\n  - Hotels\n  - Winery\n  - Country Clubs\n  - Restaurants\n  - Rooftops & Lofts\n  - Mansions\n  - Religious Spaces\n  - Museums\n  - Boats\n  - Parks\n  - Historic Venues\n  - Banquet Halls\n  - Beach\n  - Garden\n  - Waterfront\n  - Brewery\n  - State\n  - Local\n  - Government Property\n  - Other"
+        description="Determine the style of the venue. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's value as the field value: \n  - Barns & Farms\n  - Hotels\n  - Winery\n  - Country Clubs\n  - Restaurants\n  - Rooftops & Lofts\n  - Mansions\n  - Religious Spaces\n  - Museums\n  - Boats\n  - Parks\n  - Historic Venues\n  - Banquet Halls\n  - Beach\n  - Garden\n  - Waterfront\n  - Brewery\n  - State\n  - Local\n  - Government Property\n  - Other"
     )
     indoor_outdoor: (
         Literal[
@@ -271,7 +251,7 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine the indoor/outdoor nature of the venue. You MUST CHOOSE ONE of the following options and return the selected option’s description as the field value: \n  - Outdoor space but has a covering to provide some protection against weather elements\n  - Predominantly outdoor\n  - Predominantly without protection\n  - Not enough information. For guidance: You must choose one of the above options. A predominantly outdoor space may include gardens or patios, while one without a covering lacks weather protection (e.g., an open field)."
+        description="Determine the indoor/outdoor nature of the venue. You MUST CHOOSE ONE of the following options and return the selected option's description as the field value: \n  - Outdoor space but has a covering to provide some protection against weather elements\n  - Predominantly outdoor\n  - Predominantly without protection\n  - Not enough information. For guidance: You must choose one of the above options. A predominantly outdoor space may include gardens or patios, while one without a covering lacks weather protection (e.g., an open field)."
     )
     privacy: (
         Literal[
@@ -282,7 +262,7 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Assess the privacy level. You MUST CHOOSE ONE of the following options and return the selected option’s description as the field value: \n  - Privacy and exclusivity is a major feature of the venue\n  - Moderate privacy with possible nearby non-wedding guests\n  - Shared or public space\n  - Not enough information."
+        description="Assess the privacy level. You MUST CHOOSE ONE of the following options and return the selected option's description as the field value: \n  - Privacy and exclusivity is a major feature of the venue\n  - Moderate privacy with possible nearby non-wedding guests\n  - Shared or public space\n  - Not enough information."
     )
     accommodations: (
         Literal[
@@ -293,7 +273,7 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine the lodging accommodations offered by the venue. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s description as the field value: \n  - On-site lodging accommodations or extremely close (less than 5 mins walking distance) is possible\n  - No On-site lodging, third-party 5-10 minutes away.\n  - No on-site lodging, third-party 10+ minutes away.\n  - Not enough information."
+        description="Determine the lodging accommodations offered by the venue. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's description as the field value: \n  - On-site lodging accommodations or extremely close (less than 5 mins walking distance) is possible\n  - No On-site lodging, third-party 5-10 minutes away.\n  - No on-site lodging, third-party 10+ minutes away.\n  - Not enough information."
     )
     environmental: (
         Literal[
@@ -302,7 +282,7 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Assess the venue’s emphasis on environmental sustainability. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s description as the field value: \n  - This venue focuses on minimal environmental impact and sustainability in their offering\n  - This venue does not emphasize environment or sustainability. \n For guidance: A focus on sustainability might include eco-friendly practices (e.g., local sourcing or renewable energy), while lack of emphasis implies no mention of such efforts."
+        description="Assess the venue's emphasis on environmental sustainability. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's description as the field value: \n  - This venue focuses on minimal environmental impact and sustainability in their offering\n  - This venue does not emphasize environment or sustainability. \n For guidance: A focus on sustainability might include eco-friendly practices (e.g., local sourcing or renewable energy), while lack of emphasis implies no mention of such efforts."
     )
     general_vibe: (
         Literal[
@@ -315,5 +295,5 @@ class WeddingVenueStyle(BaseModel):
         ]
         | None
     ) = Field(
-        description="Determine the general vibe or atmosphere of the venue. You MUST CHOOSE ONE of the following options that best matches the document’s content and return the selected option’s description as the field value: \n  - Rustic and simple\n  - Peaceful and serene\n  - Grandiose and elegant\n  - Adventurous or quirky\n  - Warm and cozy\n  - Other. For guidance: Rustic and simple might include barns or farms, peaceful and serene could be gardens, grandiose and elegant might be mansions, adventurous or quirky could involve unique spaces, and warm and cozy might be cozy interiors."
+        description="Determine the general vibe or atmosphere of the venue. You MUST CHOOSE ONE of the following options that best matches the document's content and return the selected option's description as the field value: \n  - Rustic and simple\n  - Peaceful and serene\n  - Grandiose and elegant\n  - Adventurous or quirky\n  - Warm and cozy\n  - Other. For guidance: Rustic and simple might include barns or farms, peaceful and serene could be gardens, grandiose and elegant might be mansions, adventurous or quirky could involve unique spaces, and warm and cozy might be cozy interiors."
     )
