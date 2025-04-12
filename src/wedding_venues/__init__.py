@@ -9,6 +9,7 @@ from wedding_venues.cloud import (
     upload_file,
     upload_files,
 )
+from wedding_venues.image import image_properties
 from wedding_venues.pdf_convert import zip2md
 
 __all__ = [
@@ -22,4 +23,5 @@ __all__ = [
     "upload_file",
     "pdf2zip",
     "zip2md",
+    "image_properties",
 ]
