@@ -1,7 +1,9 @@
 from typing import Literal
+
 from pydantic import BaseModel, Field
 
 TierName = Literal["Standard", "Signature", "Premium"]
+
 
 class WeddingContactInfo(BaseModel):
     city: str | None = Field(description="The city this wedding venue is located in.")
@@ -16,7 +18,10 @@ class WeddingContactInfo(BaseModel):
     phone: str | None = Field(description="The phone number of the wedding venue.")
     website: str | None = Field(description="The website of the wedding venue.")
     facebook: str | None = Field(description="The facebook page of the wedding venue.")
-    instagram: str | None = Field(description="The instagram account of the wedding venue.")
+    instagram: str | None = Field(
+        description="The instagram account of the wedding venue."
+    )
+
 
 class MenuTier(BaseModel):
     name: TierName = Field(
@@ -82,6 +87,7 @@ class FoodBreakdown(BaseModel):
     def to_string(self) -> str:
         return "\n\n".join([tier.to_string() for tier in self.tiers])
 
+
 class BarTier(BaseModel):
     name: TierName = Field(
         description="Tier name: must be Standard, Signature, or Premium."
@@ -106,6 +112,7 @@ class BarTier(BaseModel):
         if self.bar_pricing_model != "Not Offered":
             parts.append(f"- Bar Pricing Model: {self.bar_pricing_model}")
         return "\n".join(parts)
+
 
 class BarBreakdown(BaseModel):
     """
@@ -145,6 +152,7 @@ class BarBreakdown(BaseModel):
             parts.append(tier.to_string())
 
         return "\n".join(parts)
+
 
 class WeddingPriceInfo(BaseModel):
     option: Literal["standard", "premium", "signature"] = Field(
@@ -372,6 +380,7 @@ def create_system_prompt(model_class: type[BaseModel]) -> str:
         {field_instructions}
         """
 
+
 class WeddingFoodInfo(BaseModel):
     outside_food_allowed: Literal[True, False] = Field(
         description="""Can external catering or food vendors be used at this venue?If the text explicitly mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."""
@@ -404,10 +413,11 @@ class WeddingFoodInfo(BaseModel):
         description="""Does the venue provide late-night food options, such as pizza or snacks after dinner and dessert service? If not mentioned, default to False."""
     )
 
+
 class WeddingVenuePricingSummary(BaseModel):
-    options: list[WeddingPriceInfo] = Field(
-        description="This is a list of all the pricing options for this wedding venue."
-    )
+    # options: list[WeddingPriceInfo] = Field(
+    #     description="This is a list of all the pricing options for this wedding venue."
+    # )
     price: int = Field(
         description="""Analyze this wedding venue document and calculate the PER PERSON cost in USD for a 100-guest wedding reception.
 
