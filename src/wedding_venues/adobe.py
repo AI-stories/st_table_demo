@@ -9,7 +9,6 @@ accordance with the terms of the Adobe license agreement accompanying it.
 import logging
 import os
 from datetime import datetime
-
 import dotenv
 from adobe.pdfservices.operation.auth.service_principal_credentials import (
     ServicePrincipalCredentials,
@@ -37,7 +36,9 @@ from adobe.pdfservices.operation.pdfjobs.result.extract_pdf_result import (
     ExtractPDFResult,
 )
 
+
 dotenv.load_dotenv()
+
 
 # Initialize the logger
 logging.basicConfig(level=logging.INFO)
