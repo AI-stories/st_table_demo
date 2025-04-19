@@ -3,3 +3,4 @@ pydantic
 pandas
 tqdm
 google-generativeai
+PyPDF2>=3.0.0

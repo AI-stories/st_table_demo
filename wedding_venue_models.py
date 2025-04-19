@@ -286,10 +286,10 @@ For guidance: A focus on sustainability might include eco-friendly practices (e.
 
 
 class WeddingVenueOther(BaseModel):
-    outside_wedding_coordinator: Literal[True, False, "unknown"] = Field(
+    outside_wedding_coordinator: Literal["True", "False", "unknown"] = Field(
         description="This venue lets me bring in my own wedding coordinator"
     )
-    outside_photographer: Literal[True, False, "unknown"] = Field(
+    outside_photographer: Literal["True", "False", "unknown"] = Field(
         description="This venue lets me bring in my own photographer"
     )
     package_approach: Literal[
@@ -333,7 +333,7 @@ For guidance: Fixed packages include in-house services (e.g., pre-set menus); mo
     top_choices: str = Field(
         description="Give me 1-2 reasons why you think a client is most likely to choose this venue (e.g., what are the biggest key selling points or benefits)."
     )
-    guest_capacity: Literal[1, 50, 100, 150, 200, 300] = Field(
+    guest_capacity: Literal["1", "50", "100", "150", "200", "300"] = Field(
         description="""Determine the estimated guest capacity. You MUST CHOOSE ONE of the following approximate maximums that best matches the document's content, representing the upper bound of each range:
 - 1 (for 1-50)
 - 50 (for 50-100)
@@ -382,34 +382,34 @@ def create_system_prompt(model_class: type[BaseModel]) -> str:
 
 
 class WeddingFoodInfo(BaseModel):
-    outside_food_allowed: Literal[True, False] = Field(
+    outside_food_allowed: bool = Field(
         description="""Can external catering or food vendors be used at this venue?If the text explicitly mentions allowing outside catering or food vendors, answer True. Do not consider desserts or cakes as food, as these are different categories. If not mentioned, default to False."""
     )
-    outside_alcohol_allowed: Literal[True, False] = Field(
+    outside_alcohol_allowed: bool = Field(
         description="""Can external alcohol be brought into this venue?If the text mentions the venue has a liquor license or provides alcohol service, answer False. If the text explicitly mentions allowing outside alcohol or BYOB policy, answer True. If not mentioned, default to False."""
     )
-    outside_dessert_allowed: Literal[True, False] = Field(
+    outside_dessert_allowed: bool = Field(
         description="""Can external desserts or cakes be brought into this venue?If the text explicitly mentions allowing outside desserts or cakes, answer True. If not mentioned, default to True."""
     )
-    kosher_food: Literal[True, False] = Field(
+    kosher_food: bool = Field(
         description="""Does the venue offer certified kosher menu options, either in-house or through external vendors?Answer True ONLY if kosher options are explicitly mentioned or if the venue explicitly states they accommodate religious dietary restrictions. If not mentioned, default to False."""
     )
-    halal_food: Literal[True, False] = Field(
+    halal_food: bool = Field(
         description="""Does the venue offer certified halal menu options, either in-house or through external vendors? Return True if offered, False if not offered. Answer True ONLY if halal options are explicitly mentioned. If not mentioned, default to False."""
     )
-    east_asian_food: Literal[True, False] = Field(
+    east_asian_food: bool = Field(
         description="""Does the venue offer East Asian food options (Chinese, Japanese, Korean, etc.), either in-house or through external vendors? Answer True if East Asian cuisine is explicitly mentioned or if the venue offers international cuisine. If not mentioned, default to False."""
     )
-    indian_food: Literal[True, False] = Field(
+    indian_food: bool = Field(
         description="""Does the venue offer Indian food options, either in-house or through external vendors? Answer True if Indian cuisine is explicitly mentioned or if the venue offers diverse international cuisine that likely includes Indian options. If not mentioned, default to False."""
     )
-    gluten_free_food: Literal[True, False] = Field(
+    gluten_free_food: bool = Field(
         description="""Does the venue offer gluten-free food options? Return True if offered, False if not offered. Answer True if gluten-free options are explicitly mentioned. If the venue mentions accommodating dietary restrictions/allergies/food preferences, return True."""
     )
-    other_ethnic_food_style: str | Literal["unknown"] = Field(
+    other_ethnic_food_style: str = Field(
         description="""Does the venue offer other ethnic food styles beyond those already mentioned? If so, list the available styles as a comma-separated string. If no other ethnic food styles are mentioned, return 'unknown'."""
     )
-    late_night_food: Literal[True, False] = Field(
+    late_night_food: bool = Field(
         description="""Does the venue provide late-night food options, such as pizza or snacks after dinner and dessert service? If not mentioned, default to False."""
     )
 
@@ -499,10 +499,3 @@ Guidance when selecting the option: A 'small portion' of disclosure means signif
 
 Follow these guidance when selecting the option: Flexibility means the venue allows negotiation on deposit amounts, payment schedules, or offers installment plans. Lack of flexibility is indicated by strict terms or no mention of flexible options."""
     )
-
-    def to_string(self) -> str:
-        parts = []
-        if self.options:
-            for option in self.options:
-                parts.append(option.to_string())
-        return "\n".join(parts)
