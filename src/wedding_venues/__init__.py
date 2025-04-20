@@ -13,7 +13,12 @@ from wedding_venues.cloud import (
     upload_files,
 )
 from wedding_venues.docling import extract_text_from_file_docling
-from wedding_venues.image import image_properties
+from wedding_venues.image import (
+    figure_to_md,
+    image_properties,
+    replace_images_with_markdown,
+)
+from wedding_venues.models import markdown_to_structured_output
 from wedding_venues.pdf_convert import zip2md
 
 __all__ = [
@@ -29,4 +34,7 @@ __all__ = [
     "zip2md",
     "image_properties",
     "extract_text_from_file_docling",
+    "figure_to_md",
+    "replace_images_with_markdown",
+    "markdown_to_structured_output",
 ]
